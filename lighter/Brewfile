@@ -1,0 +1,89 @@
+# =============================================================================
+# Brewfile — Writing + Research Cockpit (lighter)
+# =============================================================================
+# Philosophy: Mac = writing, AI interaction, light plotting, dashboards,
+#             SSH orchestration.
+#
+# Install everything:
+#   brew bundle --file lighter/Brewfile
+#
+# Check state without installing:
+#   brew bundle check --no-upgrade --file lighter/Brewfile
+#
+# Dump current installed state back into this file:
+#   brew bundle dump --file lighter/Brewfile --force
+#
+# Note on casks: Only casks that need frequent updates are managed here.
+#   Everything else is installed manually.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Phase 1 prerequisites (installed before brew bundle, listed here for record)
+# -----------------------------------------------------------------------------
+# xcode-select  — installed via: xcode-select --install
+# brew          — installed via the official install script
+
+# -----------------------------------------------------------------------------
+# Core CLI tools
+# -----------------------------------------------------------------------------
+brew "git"          # Modern git (supersedes Xcode CLT version on PATH)
+brew "gh"           # GitHub CLI — PRs, issues, auth from terminal
+brew "aria2"        # Multi-connection download accelerator
+brew "wget"         # HTTP/FTP downloader
+brew "curl"         # HTTP client (keep alongside macOS system curl)
+brew "jq"           # JSON processor
+brew "tree"         # Directory tree listing
+brew "htop"         # Interactive process monitor
+brew "ripgrep"      # Fast recursive grep (rg)
+brew "fd"           # Fast find alternative
+brew "fzf"          # Fuzzy finder for shell history, files, git
+brew "zoxide"       # Smart cd — learns frequent directories
+brew "rsync"        # File sync to/from HPC and NAS
+brew "tmux"         # Terminal multiplexer — persistent HPC sessions
+brew "mosh"         # Resilient SSH over unstable connections (VPN, travel)
+
+# -----------------------------------------------------------------------------
+# Scientific Python / R tooling
+# (Heavy scientific stacks — GDAL, NetCDF, PyTorch, etc. — managed in conda envs)
+# -----------------------------------------------------------------------------
+cask "miniconda"    # Minimal conda; ARM-native; use conda-forge channel
+brew "uv"           # Fast Python package/project manager (Rust-based)
+brew "r"            # R language runtime
+
+# -----------------------------------------------------------------------------
+# Node.js: dashboards, web previews, AI agent CLIs
+# -----------------------------------------------------------------------------
+brew "fnm"          # Fast Node version manager (replaces nvm)
+brew "pnpm"         # Fast, disk-efficient npm alternative
+
+# -----------------------------------------------------------------------------
+# Writing and publishing
+# -----------------------------------------------------------------------------
+cask "quarto"         # Scientific publishing (Markdown → PDF/HTML/slides)
+cask "basictex"       # Minimal MacTeX (~100 MB); add packages with: sudo tlmgr install <pkg>
+                      # Use `brew install --cask mactex` instead for a full TeX install
+cask "zotero"         # Reference manager (install browser connectors separately)
+cask "obsidian"       # Long-form research notes and knowledge base
+cask "microsoft-office"  # Sign in with institutional/personal Microsoft account
+
+# -----------------------------------------------------------------------------
+# Browsers (frequently updated — managed via Homebrew)
+# -----------------------------------------------------------------------------
+cask "firefox"
+cask "google-chrome"
+
+# -----------------------------------------------------------------------------
+# Remote access
+# -----------------------------------------------------------------------------
+cask "windows-app"  # Microsoft remote desktop (requires macOS 14+;
+                    # do NOT install alongside microsoft-remote-desktop)
+
+# =============================================================================
+# MANUAL INSTALLS (not in this Brewfile):
+#   - VS Code 1.98          (specific version required for Ubuntu 18 / CentOS 7 remotes)
+#   - VS Code Insiders
+#   - Claude desktop app    (Anthropic)
+#   - Codex / ChatGPT       (OpenAI)
+#   - Antigravity IDE       (Google)
+#   - Antigravity CLI       (Google)
+# =============================================================================
